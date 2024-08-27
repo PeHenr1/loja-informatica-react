@@ -1,4 +1,5 @@
 # Piquirito
+First React project made in class
 
 # Getting Started with Create React App
 
