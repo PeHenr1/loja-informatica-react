@@ -9,12 +9,13 @@ const Area = (props) => {
     (props.produtos.length > 0) ? <section className="area" style={corDeFundo}>
       <h3 style={corSublinhado}>{props.nome}</h3>
       <div className="produtos">
-        {props.produtos.map((prof) => (
+        {props.produtos.map((prod) => (
           <Produto
-            key={prof.name}
-            nome={prof.nome}
-            titulo={prof.titulo}
-            imagem={prof.imagem}
+            key={prod.name}
+            nome={prod.nome}
+            marca={prod.marca}
+            preco={prod.preco}
+            estado={prod.estado}
           />
         ))}
       </div>

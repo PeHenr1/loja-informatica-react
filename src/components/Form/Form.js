@@ -1,57 +1,64 @@
 import React, { useState } from "react";  
 import "./Form.css";
 import CampoTexto from "../TextField/TextField";
-import ListaSuspensa from "../ListaSuspensa/ListaSuspensa";
+import ListaSuspensaSecao from "../ListaSuspensaSecao/ListaSuspensaSecao";
+import ListaSuspensaMarca from "../ListaSuspensaMarca/ListaSuspensaMarca";
+import CheckboxEstado from "../CheckboxEstado/CheckboxEstado";
 import Botao from "../Botao/Botao";
 
 const Formulario = (props) => {
-  const areas = ["Progr. Básica", "Progr. Web", "Banco de Dados", "Diversos"];
-  // Criando os estados...
+  const secoes = ["Computadores","Acessórios","Impressoras","Games","Gadgets"];
+  const marcas = ["HP","Dell","Positivo","Asus","Xing Ling"];
+
   const [nome, setNome] = useState("");
-  const [titulo, setTitulo] = useState("");
-  const [imagem, setImagem] = useState("");
-  const [area, setArea] = useState("Progr. Básica");
+  const [preco, setPreco] = useState("");
+  const [estado, setEstado] = useState("Novo");
+  const [secao, setSecao] = useState("Computadores");
+  const [marca, setMarca] = useState("Positivo");
 
   const aoSalvar = (evento) => {
     evento.preventDefault();
-    //console.log("Form foi submetido => ", nome, titulo, imagem, area);
-    props.aoProfCadastrado(
-      {
-        "nome": nome,
-        "titulo": titulo,
-        "imagem": imagem,
-        "area": area
-      }
-  );
+    props.aoProdCadastrado({
+      nome,
+      preco,
+      estado,
+      secao,
+      marca,
+    });
   };
   
   return (
     <section className="formulario">
       <form onSubmit={aoSalvar}>
-        <h2>Dados do professor:</h2>
+        <h2>Dados do produto:</h2>
+        <ListaSuspensaSecao
+          label="Seção"
+          itens={secoes}
+          aoAlterado={(valor) => setSecao(valor)}
+        />
+        <ListaSuspensaMarca
+          label="Marca"
+          itens={marcas}
+          aoAlterado={(valor) => setMarca(valor)}
+        />
         <CampoTexto
           label="Nome"
-          placeholder="Digite seu nome"
+          placeholder="Digite o produto aqui"
           aoAlterado={(valor) => setNome(valor)}
         />
         <CampoTexto
-          label="Título"
-          placeholder="Digite seu título"
-          aoAlterado={(valor) => setTitulo(valor)}
+          label="Preço"
+          placeholder="Digite o preço aqui"
+          aoAlterado={(valor) => setPreco(valor)}
         />
-        <CampoTexto
-          label="Imagem"
-          placeholder="Digite o endereço da imagem"
-          aoAlterado={(valor) => setImagem(valor)}
+        <CheckboxEstado
+          estado={estado}
+          aoAlterado={(valor) => setEstado(valor)}
         />
-        <ListaSuspensa
-          label="Áreas"
-          itens={props.areas}
-          aoAlterado={(valor) => setArea(valor)}
-        />
-        <Botao>Criar Professor</Botao>
+        <Botao>Inserir Produto</Botao>
       </form>
     </section>
   );
 };
+
 export default Formulario;

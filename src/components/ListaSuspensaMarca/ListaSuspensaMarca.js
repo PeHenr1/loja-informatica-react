@@ -1,7 +1,7 @@
 import React from "react";
 import "./ListaSuspensa.css";
 
-const ListaSuspensa = (props) => {
+const ListaSuspensaMarca = (props) => {
 
   const aoEscolhido = (evento) => {
     props.aoAlterado(evento.target.value);
@@ -18,4 +18,4 @@ const ListaSuspensa = (props) => {
     </div>
   );
 };
-export default ListaSuspensa;
+export default ListaSuspensaMarca;

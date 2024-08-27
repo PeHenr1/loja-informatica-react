@@ -1,0 +1,10 @@
+.checkbox-estado {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 1rem;
+}
+
+.checkbox-estado label {
+  margin-right: 1rem;
+  font-weight: bold;
+}

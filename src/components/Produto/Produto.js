@@ -1,11 +1,22 @@
 import React from "react";
 import "./Produto.css";
 
-const Produto = ( {nome, marca, preco, estado}) => {
+const Produto = ({ nome, marca, preco, estado }) => {
+
+  const imagensDeMarca = {
+    "HP": "https://brandcentral.hp.com/content/dam/sites/brand-central/elem-logo/images/Logo_1_do.jpeg",
+    "Dell": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Dell_logo_2016.svg/2048px-Dell_logo_2016.svg.png",
+    "Positivo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsFfCnFyt-dbtZpJXJvwsy-DMVByNP3uJxrQ&s",
+    "Asus": "https://static.vecteezy.com/system/resources/previews/019/767/925/original/asus-logo-asus-icon-transparent-free-png.png",
+    "Xing Ling": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrDaQCbpdqkbunDcIhxw8b7_f3IqPS_ZDnwA&s",
+  };
+
+  const imagemMarca = imagensDeMarca[marca] 
+
   return (
-    <div className="colaborador">
+    <div className="produto">
       <div className="cabecalho">
-        <img src={marca} alt={nome} /> {/* botar a img marca verificar */}
+        <img src={imagemMarca} alt={nome} />
       </div>
       <div className="rodape">
         <h4>{nome}</h4>
@@ -15,4 +26,5 @@ const Produto = ( {nome, marca, preco, estado}) => {
     </div>
   );
 };
+
 export default Produto;
