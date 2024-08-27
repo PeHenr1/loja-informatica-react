@@ -1,5 +1,6 @@
 import React from "react";
 import "./Produto.css";
+import PropTypes from 'prop-types';
 
 const Produto = ({ nome, marca, preco, estado }) => {
 
@@ -25,6 +26,13 @@ const Produto = ({ nome, marca, preco, estado }) => {
       </div>
     </div>
   );
+};
+
+Produto.propTypes = {
+  nome: PropTypes.string.isRequired,
+  marca: PropTypes.string.isRequired,
+  preco: PropTypes.string.isRequired,
+  estado: PropTypes.string.isRequired,
 };
 
 export default Produto;

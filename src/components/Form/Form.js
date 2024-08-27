@@ -1,3 +1,4 @@
+// Formulario.js
 import React, { useState } from "react";  
 import "./Form.css";
 import CampoTexto from "../TextField/TextField";
@@ -5,8 +6,9 @@ import ListaSuspensaSecao from "../ListaSuspensaSecao/ListaSuspensaSecao";
 import ListaSuspensaMarca from "../ListaSuspensaMarca/ListaSuspensaMarca";
 import CheckboxEstado from "../CheckboxEstado/CheckboxEstado";
 import Botao from "../Botao/Botao";
+import ModalErro from "../ModalErro/ModalErro"; // Importa o componente do modal
 
-const Formulario = (props) => {
+const Formulario = ({ aoProdCadastrado }) => {
   const secoes = ["Computadores","Acessórios","Impressoras","Games","Gadgets"];
   const marcas = ["HP","Dell","Positivo","Asus","Xing Ling"];
 
@@ -15,18 +17,40 @@ const Formulario = (props) => {
   const [estado, setEstado] = useState("Novo");
   const [secao, setSecao] = useState("Computadores");
   const [marca, setMarca] = useState("Positivo");
+  const [erro, setErro] = useState(false); // Controla o estado do modal de erro
 
   const aoSalvar = (evento) => {
     evento.preventDefault();
-    props.aoProdCadastrado({
+
+    // Validação
+    if (nome.trim() === "" || preco.trim() === "") {
+      setErro(true); // Exibe o modal de erro
+      return;
+    }
+
+    // Limpar a mensagem de erro
+    setErro(false);
+
+    aoProdCadastrado({
       nome,
       preco,
       estado,
       secao,
       marca,
     });
+
+    // Limpar os campos após o cadastro
+    setNome("");
+    setPreco("");
+    setEstado("Novo");
+    setSecao("Computadores");
+    setMarca("Positivo");
   };
   
+  const fecharModal = () => {
+    setErro(false); // Fecha o modal de erro
+  };
+
   return (
     <section className="formulario">
       <form onSubmit={aoSalvar}>
@@ -34,29 +58,37 @@ const Formulario = (props) => {
         <ListaSuspensaSecao
           label="Seção"
           itens={secoes}
-          aoAlterado={(valor) => setSecao(valor)}
+          aoAlterado={setSecao}
         />
         <ListaSuspensaMarca
           label="Marca"
           itens={marcas}
-          aoAlterado={(valor) => setMarca(valor)}
+          aoAlterado={setMarca}
         />
         <CampoTexto
           label="Nome"
-          placeholder="Digite o produto aqui"
-          aoAlterado={(valor) => setNome(valor)}
+          placeholder="Digite o nome do produto"
+          valor={nome}
+          aoAlterado={setNome}
         />
         <CampoTexto
           label="Preço"
-          placeholder="Digite o preço aqui"
-          aoAlterado={(valor) => setPreco(valor)}
+          placeholder="Digite o preço do produto"
+          valor={preco}
+          aoAlterado={setPreco}
         />
         <CheckboxEstado
           estado={estado}
-          aoAlterado={(valor) => setEstado(valor)}
+          aoAlterado={setEstado}
         />
-        <Botao>Inserir Produto</Botao>
+        <Botao>Criar Produto</Botao>
       </form>
+      {erro && (
+        <ModalErro
+          mensagem="Os campos nome e preço são obrigatórios!"
+          aoFechar={fecharModal}
+        />
+      )}
     </section>
   );
 };
