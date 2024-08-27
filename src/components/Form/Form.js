@@ -1,4 +1,3 @@
-// Formulario.js
 import React, { useState } from "react";  
 import "./Form.css";
 import CampoTexto from "../TextField/TextField";
@@ -56,24 +55,24 @@ const Formulario = ({ aoProdCadastrado }) => {
           label="Seção"
           itens={secoes}
           aoAlterado={setSecao}
-          valor={secao}  // Certificando que o valor do estado seja passado
+          valor={secao} 
         />
         <ListaSuspensaMarca
           label="Marca"
           itens={marcas}
           aoAlterado={setMarca}
-          valor={marca}  // Certificando que o valor do estado seja passado
+          valor={marca} 
         />
         <CampoTexto
           label="Nome"
           placeholder="Digite o nome do produto"
-          valor={nome}  // Certificando que o valor do estado seja passado
+          valor={nome} 
           aoAlterado={setNome}
         />
         <CampoTexto
           label="Preço"
           placeholder="Digite o preço do produto"
-          valor={preco}  // Certificando que o valor do estado seja passado
+          valor={preco} 
           aoAlterado={setPreco}
         />
         <CheckboxEstado

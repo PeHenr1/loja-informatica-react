@@ -12,7 +12,7 @@ const CampoTexto = (props) => {
       <input
         type="text"
         placeholder={props.placeholder}
-        value={props.valor} // Usa o valor do estado como value
+        value={props.valor} 
         onChange={aoDigitado}
       />
     </div>
