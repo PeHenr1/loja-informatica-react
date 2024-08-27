@@ -1,5 +1,5 @@
 # Piquirito
-First React project made in class
+First React project made in class - Pedro H Aissa e Vinicius de Matos
 
 # Getting Started with Create React App
 
