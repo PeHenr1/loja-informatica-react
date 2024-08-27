@@ -6,7 +6,7 @@ import ListaSuspensaSecao from "../ListaSuspensaSecao/ListaSuspensaSecao";
 import ListaSuspensaMarca from "../ListaSuspensaMarca/ListaSuspensaMarca";
 import CheckboxEstado from "../CheckboxEstado/CheckboxEstado";
 import Botao from "../Botao/Botao";
-import ModalErro from "../ModalErro/ModalErro"; // Importa o componente do modal
+import ModalErro from "../ModalErro/ModalErro";
 
 const Formulario = ({ aoProdCadastrado }) => {
   const secoes = ["Computadores","Acessórios","Impressoras","Games","Gadgets"];
@@ -17,18 +17,16 @@ const Formulario = ({ aoProdCadastrado }) => {
   const [estado, setEstado] = useState("Novo");
   const [secao, setSecao] = useState("Computadores");
   const [marca, setMarca] = useState("Positivo");
-  const [erro, setErro] = useState(false); // Controla o estado do modal de erro
+  const [erro, setErro] = useState(false);
 
   const aoSalvar = (evento) => {
     evento.preventDefault();
 
-    // Validação
     if (nome.trim() === "" || preco.trim() === "") {
-      setErro(true); // Exibe o modal de erro
+      setErro(true);
       return;
     }
 
-    // Limpar a mensagem de erro
     setErro(false);
 
     aoProdCadastrado({
@@ -39,7 +37,6 @@ const Formulario = ({ aoProdCadastrado }) => {
       marca,
     });
 
-    // Limpar os campos após o cadastro
     setNome("");
     setPreco("");
     setEstado("Novo");
@@ -48,7 +45,7 @@ const Formulario = ({ aoProdCadastrado }) => {
   };
   
   const fecharModal = () => {
-    setErro(false); // Fecha o modal de erro
+    setErro(false);
   };
 
   return (
@@ -59,22 +56,24 @@ const Formulario = ({ aoProdCadastrado }) => {
           label="Seção"
           itens={secoes}
           aoAlterado={setSecao}
+          valor={secao}  // Certificando que o valor do estado seja passado
         />
         <ListaSuspensaMarca
           label="Marca"
           itens={marcas}
           aoAlterado={setMarca}
+          valor={marca}  // Certificando que o valor do estado seja passado
         />
         <CampoTexto
           label="Nome"
           placeholder="Digite o nome do produto"
-          valor={nome}
+          valor={nome}  // Certificando que o valor do estado seja passado
           aoAlterado={setNome}
         />
         <CampoTexto
           label="Preço"
           placeholder="Digite o preço do produto"
-          valor={preco}
+          valor={preco}  // Certificando que o valor do estado seja passado
           aoAlterado={setPreco}
         />
         <CheckboxEstado
